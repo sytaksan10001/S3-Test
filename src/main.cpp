@@ -92,10 +92,6 @@ void processCommand(String inputValue) {
         break;
 
     case 2:
-        motor1.backward(255);
-        motor2.backward(255);
-        motor3.backward(255);
-        motor4.backward(255);
         break;
 
     default:
@@ -183,12 +179,11 @@ void setup() {
     ts.addTask(RES);
     ts.addTask(MAIN);
 
-    // CNT.enable();
-    // PRT.enable();
+ 
 
     IRR.enable();
     RES.enable();
-    // MAIN.enable();
+
 
     enc1._encoder.clearCount();
     enc2._encoder.clearCount();
@@ -208,39 +203,6 @@ void loop() {
 }
 
 void line() {
-    // if (stateRight) {
-    //     speed1 += 1;
-    //     speed3 += 1;
-    //     speed2 -= 1;
-    //     speed4 -= 1;
-    //     // Serial.println("kanan");
-    // } else if (stateLeft) {
-    //     speed1 -= 1;
-    //     speed3 -= 1;
-    //     speed2 += 1;
-    //     speed4 += 1;
-    //     // Serial.println("kiri");
-    // } else if (stateLeft && !state) {
-    //     speed1 -= 2;
-    //     speed3 -= 2;
-    //     speed2 += 2;
-    //     speed4 += 2;
-    // } else if (stateRight && !state) {
-    //     speed1 += 2;
-    //     speed3 += 2;
-    //     speed2 -= 2;
-    //     speed4 -= 2;
-    // } else {
-    //     speed1 = SPEED;
-    //     speed3 = SPEED;
-    //     speed2 = SPEED;
-    //     speed4 = SPEED;
-    // }
-
-    // motor1.forward(speed1);
-    // motor2.forward(speed2);
-    // motor3.forward(speed3);
-    // motor4.forward(speed4);
 
     if (stateRight) {
         speed1 = 180;
@@ -309,116 +271,11 @@ void IRread() {
     stateRight = digitalRead(2);
     stateLeftMax = digitalRead(16);
     stateRightMax = digitalRead(1);
-    // stateFork = digitalRead(6);
-}
-
-void belokKanan() {
-    // RES.disable();
-    // pulse = 0;
-    // enc2._encoder.clearCount();
-    // while (pulse >= -410) {
-    //     if (pulse <= -300) {
-    //         motor1.forward(141);
-    //         motor2.backward(140);
-    //         motor3.forward(141);
-    //         motor4.backward(140);
-    //     } else {
-    //         motor1.forward(151);
-    //         motor2.backward(150);
-    //         motor3.forward(151);
-    //         motor4.backward(150);
-    //     }
-
-    //     pulse = enc2._encoder.getCount();
-    // }
-
-    motor1.forward(151);
-    motor2.backward(150);
-    motor3.forward(151);
-    motor4.backward(150);
-    delay(1800);
-
-    state = digitalRead(15);
-    while (!state) {
-        motor1.backward(151);
-        motor2.forward(150);
-        motor3.forward(151);
-        motor4.backward(150);
-
-        state = digitalRead(15);
-    }
-
-    motor1.stop();
-    motor2.stop();
-    motor3.stop();
-    motor4.stop();
-
-    RES.enable();
-}
-
-void belokKiri() {
-    // RES.disable();
-    // pulse = 0;
-    // enc2._encoder.clearCount();
-    // while (pulse <= 410) {
-    //     if (pulse >= 300) {
-    //         motor1.backward(141);
-    //         motor2.forward(140);
-    //         motor3.backward(141);
-    //         motor4.forward(140);
-    //     } else {
-    //         motor1.backward(151);
-    //         motor2.forward(150);
-    //         motor3.backward(151);
-    //         motor4.forward(150);
-    //     }
-
-    //     pulse = enc2._encoder.getCount();
-    // }
-    // WebSerial.println(pulse);
-
-    motor1.backward(151);
-    motor2.forward(150);
-    motor3.backward(151);
-    motor4.forward(150);
-    delay(1800);
-
-    motor1.stop();
-    motor2.stop();
-    motor3.stop();
-    motor4.stop();
-    // delay(10000);
-    state = digitalRead(15);
-
-    while (!state) {
-        motor1.forward(150);
-        motor2.backward(150);
-        motor3.backward(150);
-        motor4.forward(150);
-
-        state = digitalRead(15);
-    }
-
-    motor1.stop();
-    motor2.stop();
-    motor3.stop();
-    motor4.stop();
-
-    RES.enable();
+    
 }
 
 void putarBalik() {
-    // RES.disable();
-    // pulse = 0;
-    // enc2._encoder.clearCount();
-    // while (pulse >= -680) {
-    //     motor1.forward(151);
-    //     motor2.backward(150);
-    //     motor3.forward(151);
-    //     motor4.backward(150);
-
-    //     pulse = enc2._encoder.getCount();
-    // }
+   
     motor1.forward(151);
     motor2.backward(150);
     motor3.forward(151);
@@ -464,7 +321,7 @@ void code() {
             CNT.disable();
         }
 
-        // delay(50000);
+        
     } else if (step == 2) {
         motor1.forward(160);
         motor2.forward(162);
@@ -754,12 +611,6 @@ void ambil() {
     stateFork = digitalRead(6);
 
     while (stateFork) {
-        // line();
-        // motor1.forward(170);
-        // motor2.forward(170);
-        // motor3.forward(170);
-        // motor4.forward(170);
-
         maju();
 
         stateFork = digitalRead(6);
@@ -794,22 +645,6 @@ void belokKananReg() {
     RES.disable();
     pulse = 0;
     enc4._encoder.clearCount();
-    // while (pulse >= -400) {
-    //     if (pulse <= -280) {
-    //         motor1.forward(145);
-    //         motor2.backward(144);
-    //         motor3.forward(145);
-    //         motor4.backward(144);
-    //     } else {
-    //         motor1.forward(151);
-    //         motor2.backward(150);
-    //         motor3.forward(151);
-    //         motor4.backward(150);
-    //     }
-
-    //     pulse = enc4._encoder.getCount();
-    // }
-    // WebSerial.println(pulse);
 
     motor1.forward(151);
     motor2.backward(150);
@@ -829,25 +664,6 @@ void belokKananReg() {
 }
 
 void belokKiriReg() {
-    // RES.disable();
-    // pulse = 0;
-    // enc2._encoder.clearCount();
-    // while (pulse <= 410) {
-    //     if (pulse >= 300) {
-    //         motor1.backward(141);
-    //         motor2.forward(140);
-    //         motor3.backward(141);
-    //         motor4.forward(140);
-    //     } else {
-    //         motor1.backward(151);
-    //         motor2.forward(150);
-    //         motor3.backward(151);
-    //         motor4.forward(150);
-    //     }
-
-    //     pulse = enc2._encoder.getCount();
-    // }
-    // WebSerial.println(pulse);
 
     motor1.backward(151);
     motor2.forward(150);
@@ -874,42 +690,8 @@ void maju() {
 }
 
 void mundur() {
-
     motor1.backward(160);
     motor2.backward(161);
     motor3.backward(160);
     motor4.backward(161);
-}
-
-void code2() {
-    if (step == 1) {
-
-        // CNT.enable();
-
-        // motor1.forward(160);
-        // motor2.forward(161);
-        // motor3.forward(160);
-        // motor4.forward(161);
-
-        // if (count >= 5) {
-        //     step++;
-        //     CNT.disable();
-        // }
-
-    } else if (step == 2) {
-        motor1.forward(160);
-        motor2.forward(161);
-        motor3.forward(160);
-        motor4.forward(161);
-        delay(500);
-
-        motor1.stop();
-        motor2.stop();
-        motor3.stop();
-        motor4.stop();
-        delay(500);
-        belokKiri();
-        pos = 0;
-        step++;
-    }
 }
