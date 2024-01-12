@@ -40,11 +40,8 @@ void forkDown();
 void putarBalik();
 void ambil();
 void letakkan();
-void belokKananReg();
-void belokKiriReg();
 void maju();
 void mundur();
-void code2();
 
 AsyncWebServer server(80);
 AsyncWebSocket ws("/ws");
@@ -56,7 +53,7 @@ Task PRT(1000, TASK_FOREVER, &printer);
 Task IRR(1, TASK_FOREVER, &IRread);
 Task RES(5000, TASK_FOREVER, &reset);
 Task MAIN(100, TASK_FOREVER, &code);
-Task MAIN2(100, TASK_FOREVER, &code2);
+
 bool state, stateRight, stateLeft, stateRightMax = 0, stateLeftMax = 0, lastState = 0, stateFork = 0;
 int count = 0, lastCount;
 bool counting = false;
