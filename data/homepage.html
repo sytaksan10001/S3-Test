@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         html {
@@ -59,12 +60,36 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>ESP32 Control Panel</h1>
-        <a class="button" href="/control">Control Forklift</a>
+        <a class="button" onclick="sendVal(1)">Run Left Code</a>
+        <a class="button" onclick="sendVal(2)">Run Right Code</a>
         <a class="button" href="/webserial">Web Serial</a>
         <a class="button" href="/update">Upload OTA</a>
     </div>
+
+    <script>
+        var webSocketUrl = "ws:\/\/" + window.location.hostname + "/ws";
+        var websocket;
+
+        function initWebSocket() {
+            websocket = new WebSocket(webSocketUrl);
+            websocket.onopen = function (event) { };
+            websocket.onclose = function (event) { setTimeout(initWebSocket, 2000); };
+            websocket.onmessage = function (event) { };
+        }
+
+        function sendVal(value) {
+            websocket.send(value);
+        }
+
+        window.onload = initWebSocket;
+        document.getElementById("mainTable").addEventListener("touchend", function (event) {
+            event.preventDefault()
+        });      
+    </script>
 </body>
+
 </html>

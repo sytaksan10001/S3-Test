@@ -30,13 +30,13 @@ void Encoder::RPM(float setpoint) {
     mapped = map(abs(Output), 0, 255, 115, 240);
 
     // if (Output > 0) {
-        // digitalWrite(40, LOW);
-        // digitalWrite(39, HIGH);
-        // _motor.forward(mapped);
+    //     digitalWrite(40, LOW);
+    //     digitalWrite(39, HIGH);
+    //     _motor.forward(mapped);
     // } else {
-        // digitalWrite(40, HIGH);
-        // digitalWrite(39, LOW);
-        // _motor.backward(mapped);
+    //     digitalWrite(40, HIGH);
+    //     digitalWrite(39, LOW);
+    //     _motor.backward(mapped);
     // }
     _motor.forward(mapped);
     // Serial.print("rpm: ");
